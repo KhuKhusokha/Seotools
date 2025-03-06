@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Auto Generate Contents</title>
+    <!-- Link to CSS files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/loading.css">
+    <link rel="stylesheet" href="css/sidepanel.css">
+</head>
+<body>
+    <!-- Side Panel -->
+    <div id="sidepanel">
+        <button id="toggle-sidepanel">☰</button>
+        <div id="sidepanel-content">
+            <h3>Menu</h3>
+            <ul>
+                <li><a href="#">List</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>SEO Auto Generate Contents</h1>
+
+        <!-- Input for Keywords -->
+        <h2>Keywords</h2>
+        <textarea id="keywords" placeholder="Enter keywords (contoh=bola, slot)"></textarea>
+
+        <!-- Input for Word Count -->
+        <h2>Word Count</h2>
+        <input type="number" id="Kata" placeholder="Masukan angka (contoh 5)" />
+
+        <!-- Submit Button -->
+        <button onclick="generateContent()">SUBMIT</button>
+
+        <!-- Output for Title -->
+        <h3>Title</h3>
+        <textarea id="titleOutput" readonly></textarea>
+
+        <!-- Output for Description -->
+        <h4>Description</h4>
+        <textarea id="descriptionOutput" readonly></textarea>
+
+        <!-- Output for Article -->
+        <h5>Article</h5>
+        <textarea id="articleOutput" readonly></textarea>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div>*function (loading process screen....)</div>
+        <div id="progress-bar">
+            <div id="progress"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; Json ft Chinque SEO Tools. All rights reserved.</p>
+    </footer>
+
+    <!-- Link to JavaScript files -->
+    <script src="js/title.js"></script>
+    <script src="js/meta.js"></script>
+    <script src="js/article.js"></script>
+    <script>
+        // JavaScript for Loading Screen
+        function showLoadingScreen() {
+            const loadingScreen = document.getElementById('loading-screen');
+            loadingScreen.style.display = 'flex';
+        }
+
+        function updateProgress(percentage) {
+            const progress = document.getElementById('progress');
+            progress.style.width = `${percentage}%`;
+        }
+
+        function hideLoadingScreen() {
+            const loadingScreen = document.getElementById('loading-screen');
+            loadingScreen.style.display = 'none';
+        }
+
+        // JavaScript for Side Panel
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidepanel = document.getElementById('sidepanel');
+            const toggleButton = document.getElementById('toggle-sidepanel');
+
+            // Toggle side panel on button click
+            toggleButton.addEventListener('click', () => {
+                sidepanel.classList.toggle('open');
+            });
+
+            // Close side panel when clicking outside
+            document.addEventListener('click', (event) => {
+                if (!sidepanel.contains(event.target) && !toggleButton.contains(event.target)) {
+                    sidepanel.classList.remove('open');
+                }
+            });
+        });
+
+        // JavaScript for Generating Content
+        function generateContent() {
+            // Show loading screen
+            showLoadingScreen();
+
+            // Simulate processing delay
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 10;
+                updateProgress(progress);
+                if (progress >= 100) {
+                    clearInterval(interval);
+
+                    // Get input values
+                    const keywords = document.getElementById('keywords').value;
+                    const wordCount = document.getElementById('Kata').value;
+
+                    // Generate content using functions from title.js, meta.js, and article.js
+                    const title = generateTitle(keywords);
+                    const description = generateMetaDescription(keywords);
+                    const article = generateArticle(keywords, wordCount);
+
+                    // Display results
+                    document.getElementById('titleOutput').value = title;
+                    document.getElementById('descriptionOutput').value = description;
+                    document.getElementById('articleOutput').value = article;
+
+                    // Hide loading screen
+                    hideLoadingScreen();
+                }
+            }, 300);
+        }
+    </script>
+</body>
+</html>
