@@ -1,54 +1,115 @@
-/* Side Panel Styles */
-#sidepanel {
+/* Sidepane styles for additional UI elements */
+
+.sidepane {
     position: fixed;
     top: 0;
-    left: -250px; /* Hide the side panel by default */
-    width: 250px;
+    right: -300px;
+    width: 300px;
     height: 100%;
-    background-color: #333;
-    color: #fff;
-    transition: left 0.3s ease;
+    background-color: var(--dark-secondary);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease;
     z-index: 1000;
+    padding: 1rem;
+    overflow-y: auto;
 }
 
-#sidepanel.open {
-    left: 0; /* Show the side panel when open */
+.sidepane.open {
+    right: 0;
 }
 
-#toggle-sidepanel {
-    position: absolute;
-    top: 10px;
-    left: 260px; /* Position the toggle button outside the side panel */
-    background-color: #333;
-    color: #fff;
+.sidepane-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.sidepane-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.close-sidepane {
+    background: transparent;
     border: none;
-    padding: 10px;
+    color: var(--text-muted);
+    font-size: 1.5rem;
     cursor: pointer;
-    z-index: 1001;
+    transition: var(--transition);
 }
 
-#sidepanel-content {
-    padding: 20px;
+.close-sidepane:hover {
+    color: var(--danger);
 }
 
-#sidepanel-content h3 {
-    margin-top: 0;
+.sidepane-content {
+    margin-bottom: 2rem;
 }
 
-#sidepanel-content ul {
-    list-style-type: none;
-    padding: 0;
+.sidepane-section {
+    margin-bottom: 1.5rem;
 }
 
-#sidepanel-content ul li {
-    margin: 15px 0;
+.sidepane-section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--primary-color);
 }
 
-#sidepanel-content ul li a {
-    color: #fff;
-    text-decoration: none;
+.history-item {
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    background-color: rgba(255, 255, 255, 0.05);
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition);
 }
 
-#sidepanel-content ul li a:hover {
-    text-decoration: underline;
+.history-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Overlay for when sidepane is open */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* Toggle button for the sidepane */
+.toggle-sidepane {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 998;
+}
+
+.toggle-sidepane:hover {
+    background-color: #3478c5;
+    transform: scale(1.05);
 }
