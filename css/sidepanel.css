@@ -113,3 +113,13 @@
     background-color: #3478c5;
     transform: scale(1.05);
 }
+
+/* Jekyll build fix - make sure SCSS processing works */
+:root {
+    --jekyll-fix: none;
+}
+
+/* Empty rule to ensure CSS is valid */
+.jekyll-scss-fix {
+    display: var(--jekyll-fix);
+}
