@@ -204,3 +204,8 @@ select {
 .hidden {
     display: none;
 }
+
+/* Fix for GitHub Pages Jekyll build */
+.jekyll-build-fix {
+    display: none;
+}
