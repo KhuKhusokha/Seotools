@@ -39,3 +39,9 @@
     50% { opacity: 1; }
     100% { opacity: 0.6; }
 }
+
+/* Ghost element for Jekyll build fix */
+.jekyll-build-helper:after {
+    content: "";
+    display: none;
+}
